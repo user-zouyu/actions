@@ -1,3 +1,6 @@
+name: test2
+run-name: ${{ github.actor }} test2
+on: [push]
 jobs:
   job1:
     runs-on: ubuntu-latest
