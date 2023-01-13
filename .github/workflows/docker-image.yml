@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: ls
-      run: ls
-    - name: pwd
-      run: pwd
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag zouyu99/actions:1.0.0
+    - name: Pull the Docker image
+      run: |
+        docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
+        docker push zouyu99/actions:1.0.0
 
