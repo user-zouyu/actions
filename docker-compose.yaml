@@ -1,0 +1,11 @@
+version: "1.0.0"
+
+
+services:
+  demo:
+    container_name: demo
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
