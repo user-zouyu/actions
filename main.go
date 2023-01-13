@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Welcome using")
+	fmt.Println("Welcome using <dev>")
 	engine := gin.Default()
 
 	engine.GET("/ping", func(ctx *gin.Context) {
