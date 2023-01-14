@@ -16,10 +16,6 @@ jobs:
         run: |
           docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
           docker push ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
-  deploy:
-    name: Deploy Docker Image
-    runs-on: ubuntu-latest
-    steps:
       - name: 部署镜像
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -30,4 +26,3 @@ jobs:
           script: |
             docker pull ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
             docker run -it --name actions -p "8080:8080" ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
-            
