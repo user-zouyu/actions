@@ -2,7 +2,7 @@ name: get tags
 on:
   push:
     tags:
-      - '^[1-9]\d*(\.[1-9]\d*)*$'
+      - 'v*.*.*'
 jobs:
   github-get-tags:
     runs-on: ubuntu-latest
