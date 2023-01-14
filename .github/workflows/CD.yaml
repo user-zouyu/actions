@@ -16,6 +16,7 @@ jobs:
         run: |
           docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
           docker push ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
+          curl ifconfig.me
       - name: 部署镜像
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -28,3 +29,4 @@ jobs:
             docker rmi -f $(docker images -aq --filter reference='*/actions:v*.*.*')
             docker pull ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
             docker run -d --name actions -p "8080:8080" ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
+            curl ifconfig.me

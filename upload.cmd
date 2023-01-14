@@ -1,0 +1,1 @@
+scp ./run.sh ubuntu@work.zouyu.cloud:~/hole/
