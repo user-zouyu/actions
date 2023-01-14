@@ -1,0 +1,16 @@
+name: get tags
+on:
+  - push
+jobs:
+  github-get-tags:
+    runs-on: ubuntu-latest
+      - name: executing remote ssh commands using password
+          uses: appleboy/ssh-action@v0.1.7
+          with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.PASSWORD }}
+            port: ${{ secrets.PORT }}
+            script: |
+              cd ~/
+              ls
