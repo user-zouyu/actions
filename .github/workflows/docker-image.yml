@@ -3,8 +3,12 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
+    tags:
+      - ^[1-9]\d*(\.[1-9]\d*)*$
   pull_request:
     branches: [ "main" ]
+    tags:
+      - ^[1-9]\d*(\.[1-9]\d*)*$
 
 jobs:
   build:
