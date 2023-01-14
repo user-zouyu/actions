@@ -1,4 +1,4 @@
-name: remote ssh command 1
+name: 部署服务
 on:
   push:
     branch:
