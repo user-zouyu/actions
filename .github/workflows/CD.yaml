@@ -11,11 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag zouyu99/actions:${{github.ref_name}}
+        run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
       - name: Push the Docker image
         run: |
           docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-          docker push zouyu99/actions:${{github.ref_name}}
+          docker push ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
   deploy:
     name: Deploy Docker Image
     runs-on: ubuntu-latest
@@ -28,7 +28,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-            docker pull zouyu99/actions:${{github.ref_name}}
-            docker run -it --name actions -p "8080:8080" zouyu99/actions:${{github.ref_name}}
+            docker pull ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
+            docker run -it --name actions -p "8080:8080" ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
             
