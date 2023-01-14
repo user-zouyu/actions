@@ -24,5 +24,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
+            docker rm -f actions
+            docker rmi -f $(docker images -aq --filter reference='*/actions:v*.*.*')
             docker pull ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
             docker run -it --name actions -p "8080:8080" ${{secrets.DOCKER_USERNAME}}/actions:${{github.ref_name}}
